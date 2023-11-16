@@ -31,7 +31,8 @@ app.get('/api/v1/pets/owner', (req, res) => {
     const pet = pets.find(pet => pet.owner === owner);
 
     // send the pet as a response
-    res.send(pet)
+    res.send(`<h1>${owner}'s Pets</h1>
+              <h4>${pet.name}</h4>`)
 });
 
 // get pet by name
@@ -43,7 +44,8 @@ app.get('/api/v1/pets/:name', (req, res) => {
     const pet = pets.find(pet => pet.name === name);
 
     // send the pet as a response
-    res.send(pet)
+    res.send(`<h2>Name: ${pet.name}</h2>
+              <h4>Age: ${pet.age}</h4>`)
 });
 
 app.listen(PORT, () => {
