@@ -28,11 +28,10 @@ app.get('/api/v1/pets/owner', (req, res) => {
     const {owner} = req.query
 
     // find the pet in the pets array
-    const pet = pets.find(pet => pet.owner === owner);
+    const pet = pets.filter(pet => pet.owner.toLowerCase() === owner.toLowerCase());
 
     // send the pet as a response
-    res.send(`<h1>${owner}'s Pets</h1>
-              <h4>${pet.name}</h4>`)
+    res.send(pet)
 });
 
 // get pet by name
@@ -41,7 +40,7 @@ app.get('/api/v1/pets/:name', (req, res) => {
     const { name } = req.params
 
     // find the pet in the pets array
-    const pet = pets.find(pet => pet.name === name);
+    const pet = pets.find(pet => pet.name.toLowerCase() === name.toLowerCase());
 
     // send the pet as a response
     res.send(`<h2>Name: ${pet.name}</h2>
